@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Input } from "antd";
 import moment from "moment";
 
@@ -9,27 +9,28 @@ const api = {
 
 function Home() {
   const [city, setCity] = useState();
-  const [temp,setTemp] = useState();
-  const [weather,setWeather] = useState();
-
-  const [country,setCountry] = useState();
+  const [temp, setTemp] = useState();
+  const [weather, setWeather] = useState();
+  const [humadity, sethumadity] = useState();
+  const [country, setCountry] = useState();
+  const [visible, setVisible] = useState();
+  const [speed, setSpeed] = useState();
 
   const search = async (evt) => {
     if (evt.key === "Enter") {
       const data = await fetch(
         `${api.base}weather?q=${city}&units=metric&APPID=${api.key}`
       );
-      const response  = await data.json();
-      setWeather(response.weather[0].main)
-      setTemp(response.main.temp)
-  setCountry(response.sys.country)
-      console.log(response);
-     console.log(response.name)
-    console.log(response.sys.country)
-     console.log(response.main.temp)
-     console.log(response.weather[0].main) 
+      const response = await data.json();
+      setWeather(response.weather[0].main);
+      setTemp(response.main.temp);
+      setCountry(response.sys.country);
+      sethumadity(response.main.humidity);
+      setCity(response.name);
+      setVisible(response.visibility);
+      setSpeed(response.wind.speed);
 
-     
+      console.log(response);
     }
   };
 
@@ -56,13 +57,16 @@ function Home() {
         />
       </div>
       <div className="city-name">
-        <h2>{city},{country}</h2>
+        <h1>
+          {city},{country}
+        </h1>
       </div>
       <div>
-        <h1>{temp}&deg;</h1>
-      </div>
-      <div>
-        <h2>{weather}</h2>
+        <h2>Temprature :{temp}&deg;</h2> 
+        <h2>Humadity :{humadity}%</h2> 
+        <h2>weather :{weather}</h2> 
+        <h2>Visibility :{visible}mi</h2> 
+        <h2>WindSpeed :{speed}km/h</h2> 
       </div>
     </div>
   );
