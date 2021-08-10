@@ -3,12 +3,16 @@ import { Input } from "antd";
 import moment from "moment";
 
 const api = {
-  key: "097d4486ae133016af8ba743e28031fd",
+  key: process.env.REACT_APP_API_KEY,
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
 function Home() {
   const [city, setCity] = useState();
+  const [temp,setTemp] = useState();
+  const [weather,setWeather] = useState();
+
+  const [country,setCountry] = useState();
 
   const search = async (evt) => {
     if (evt.key === "Enter") {
@@ -16,12 +20,15 @@ function Home() {
         `${api.base}weather?q=${city}&units=metric&APPID=${api.key}`
       );
       const response  = await data.json();
- 
+      setWeather(response.weather[0].main)
+      setTemp(response.main.temp)
+  setCountry(response.sys.country)
       console.log(response);
      console.log(response.name)
-     console.log(response.sys.country)
+    console.log(response.sys.country)
      console.log(response.main.temp)
-     console.log(response.weather[0].main)
+     console.log(response.weather[0].main) 
+
      
     }
   };
@@ -42,20 +49,20 @@ function Home() {
           placeholder="Search.."
           type="text"
           className="search-bar"
-          placeholder="Search..."
+          placeholder="Search"
           onChange={(e) => setCity(e.target.value)}
           value={city}
           onKeyPress={search}
         />
       </div>
       <div className="city-name">
-        <h2>ff</h2>
+        <h2>{city},{country}</h2>
       </div>
       <div>
-        <h1>22&deg;</h1>
+        <h1>{temp}&deg;</h1>
       </div>
       <div>
-        <h2>Sunny</h2>
+        <h2>{weather}</h2>
       </div>
     </div>
   );

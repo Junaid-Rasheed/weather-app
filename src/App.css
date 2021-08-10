@@ -3,12 +3,13 @@ body{
     text-align: center;
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
+    background-size: cover;
+    background-image: url('https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
 }
-
 .search-bar{
-    display: inline-block;
+    
     border: none;
-    background-color: bisque;
-    padding:0px 0px 20px 0px;
+    text-align: center;
+    padding:0px 0px 10px 0px;
     justify-content: space-around;
 }
