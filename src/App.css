@@ -7,7 +7,6 @@ body{
     background-image: url('https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
 }
 .search-bar{
-    
     border: none;
     text-align: center;
     background-color: rgb(142, 161, 161);
@@ -18,4 +17,9 @@ body{
     
     background-color: #d1f8f3;
     color: rgb(8, 8, 8);
+}
+
+.description{
+    font-size: large;
+    margin-bottom: 40px;
 }
